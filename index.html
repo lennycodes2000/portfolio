@@ -3,232 +3,377 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Leonard Mushumbusi | Software Developer</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="scripts.js" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
+  <title>lennycodes|Kotlin Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />  <style>
     :root {
-      --primary: #ff4c60;
-      --bg: #ffffff;
+      --primary-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      --primary-color: #6a11cb;
+      --secondary-color: #ff5e62;
+      --bg: #fdfcff;
       --text: #1e1e2f;
-      --muted: #f4f4f4;
-    }
-
-    body.dark {
-      --bg: #1e1e2f;
-      --text: #ffffff;
-      --muted: #2c2c3e;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
+      --card-bg: #ffffff;
     }
 
     body {
-      font-family: 'Montserrat', sans-serif;
-      background: var(--bg);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
       color: var(--text);
-      transition: background 0.3s, color 0.3s;
     }
 
-    nav {
-      background: var(--text);
-      color: var(--bg);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    header,
+    section {
+      padding: 4rem 2rem;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 1.5rem;
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links li a, .nav-links li button {
-      color: var(--bg);
-      text-decoration: none;
-      background: none;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
+    header {
+      background: var(--primary-gradient);
+      text-align: center;
+      color: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
     .hero {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 5rem 2rem;
-      background: linear-gradient(to bottom, var(--muted), var(--bg));
+      animation: fadeIn 1.5s ease;
+    }
+
+    .hero img {
+      max-width: 180px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      border: 4px solid white;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2.4rem;
+      font-weight: 800;
     }
 
-    .cta {
-      background: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 600px;
+      opacity: 0.95;
+    }
+
+    .hero button {
       margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(106, 17, 203, 0.3);
+      transition: all 0.3s ease;
     }
 
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
+    .hero button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(37, 117, 252, 0.5);
     }
 
-    h2 {
+@media (prefers-color-scheme: dark) {
+  .section-title {
+    background: none !important;
+    text-align:center;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+  }
+}
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      animation: slideUp 1.5s ease;
+    }
+
+    .skill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: conic-gradient(var(--primary-color) 0%, #eee 0%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+      transition: transform 0.3s;
+    }
+
+    .circle:hover {
+      transform: scale(1.08);
+    }
+
+    .skill-label {
+      font-weight: 600;
       text-align: center;
-      margin-bottom: 2rem;
-      color: var(--primary);
     }
 
-    .skill-grid, .project-grid {
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
     }
 
-    .project img {
+    .project-card {
+      background-color: var(--card-bg);
+      padding: 1.2rem;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-card img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
+      margin-bottom: 0.8rem;
     }
 
-    form {
+    .about p {
+      max-width: 800px;
+      margin: 1rem auto;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    input, textarea {
-      padding: 0.75rem;
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1rem;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 1rem;
     }
 
-    button, .download-cv {
-      background: var(--primary);
+    .contact-form button {
+      background: var(--primary-gradient);
       color: white;
-      padding: 0.75rem;
       border: none;
-      border-radius: 5px;
-      font-weight: bold;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border-radius: 6px;
       cursor: pointer;
-      text-decoration: none;
-      text-align: center;
+      transition: box-shadow 0.3s;
+    }
+
+    .contact-form button:hover {
+      box-shadow: 0 6px 18px rgba(106, 17, 203, 0.4);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-icons a {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--secondary-color);
     }
 
     footer {
-      background: var(--text);
-      color: var(--bg);
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem;
+      background: #fafafa;
+      font-size: 0.9rem;
+      border-top: 1px solid #e0e0e0;
     }
 
-    @media (max-width: 600px) {
-      .nav-links {
-        flex-direction: column;
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
+
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .project-card1 {
+  background-color: var(--card-bg);
+  padding: 1.2rem;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+  max-width: 320px; /* limit width for desktop screenshots */
+  margin: 0 auto; /* center horizontally */
+}
+
+.project-card1:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.project-card1 img {
+  width: 100%;
+  max-height: 200px; /* fix max height to avoid oversized image */
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white; /* for transparent png background */
+}
+
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".circle").forEach(el => {
+        const percent = parseInt(el.dataset.percent);
+        let current = 0;
+        const span = el.querySelector("span");
+        const interval = setInterval(() => {
+          if (current >= percent) return clearInterval(interval);
+          current++;
+          const angle = (current / 100) * 360;
+          el.style.background = `conic-gradient(var(--primary-color) 0deg ${angle}deg, #eee ${angle}deg 360deg)`;
+          span.textContent = `${current}%`;
+        }, 20);
+      });
+    });
+  </script>
 </head>
 <body>
-  <nav>
-    <div class="logo">Leonard</div>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><button id="theme-toggle">🌙</button></li>
-    </ul>
-  </nav>
-
-  <header id="home" class="hero">
-    <h1>Hi, I'm Leonard Mushumbusi</h1>
-    <p>Software Developer | Educator | Innovator</p>
-    <a href="#contact" class="cta">Let's Work Together</a>
+  <header class="hero">
+    <img src="dev.jpeg" alt="Leonard Mushumbusi" />
+    <h1>Passionate Developer & Creative Problem Solver</h1>
+    <p>I create clean, modern applications—web, desktop, and mobile—using Kotlin and Compose.<br>My focus is on making complex ideas simple and intuitive.</p>
+    <button onclick="window.location.href='#contact'">Connect with Me</button>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I’m a multi-platform software developer building desktop, web, and mobile applications. I specialize in Kotlin, Firebase, and modern UI frameworks like Jetpack Compose. I also teach computer science and develop tools for learners across Tanzania.</p>
-  </section>
-
   <section id="skills">
-    <h2>Skills</h2>
-    <div class="skill-grid">
-      <div>Jetpack Compose</div>
-      <div>Kotlin (Desktop & Android)</div>
-      <div>Firebase & Firestore</div>
-      <div>HTML / CSS / JS</div>
-      <div>SQLite</div>
-      <div>Git & GitHub</div>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill"><div class="circle" data-percent="90"><span>0%</span></div><div class="skill-label">Kotlin</div></div>
+      <div class="skill"><div class="circle" data-percent="88"><span>0%</span></div><div class="skill-label">Jetpack Compose</div></div>
+      <div class="skill"><div class="circle" data-percent="85"><span>0%</span></div><div class="skill-label">Java</div></div>
+      <div class="skill"><div class="circle" data-percent="83"><span>0%</span></div><div class="skill-label">Kobweb</div></div>
+      <div class="skill"><div class="circle" data-percent="80"><span>0%</span></div><div class="skill-label">HTML & CSS</div></div>
+      <div class="skill"><div class="circle" data-percent="75"><span>0%</span></div><div class="skill-label">JavaScript</div></div>
+      <div class="skill"><div class="circle" data-percent="70"><span>0%</span></div><div class="skill-label">PHP</div></div>
+      <div class="skill"><div class="circle" data-percent="68"><span>0%</span></div><div class="skill-label">C</div></div>
+      <div class="skill"><div class="circle" data-percent="65"><span>0%</span></div><div class="skill-label">C++</div></div>
+      <div class="skill"><div class="circle" data-percent="78"><span>0%</span></div><div class="skill-label">Ktor</div></div>
+      <div class="skill"><div class="circle" data-percent="74"><span>0%</span></div><div class="skill-label">SQLite</div></div>
     </div>
   </section>
 
+  <section class="about" id="about">
+    <h2 class="section-title">About Me</h2>
+    <p>
+      I'm Leonard Mushumbusi, a software engineer and Kotlin developer passionate about building elegant and effective solutions.
+      I specialize in developing modern web, desktop, and mobile applications using technologies like Kotlin, Jetpack Compose, and Ktor.
+      With a Computer Science background and a deep love for clean UI and UX, I turn complex ideas into intuitive digital products.
+    </p>
+  </section>
+
   <section id="projects">
-    <h2>Projects</h2>
-    <div class="project-grid">
-      <div class="project">
-        <img src="assets/images/learnmate.jpg" alt="LearnMate">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="pamba.jpeg" alt="Pamba FC App">
+        <h3>Pamba FC</h3>
+        <p>Club app with team info, fixtures, league standings, and fan discussions.</p>
+      </div>
+      <div class="project-card">
+        <img src="learnmate.jpeg" alt="LearnMate Project">
         <h3>LearnMate</h3>
-        <p>Educational mobile app with quizzes, code editor, and YouTube integration for students.</p>
+        <p>Quiz platform with video learning and a code editor for web tech students.</p>
       </div>
-      <div class="project">
-        <img src="assets/images/tienda.jpg" alt="Tienda">
+      <div class="project-card">
+        <img src="tienda.jpeg" alt="Tienda Project">
         <h3>Tienda</h3>
-        <p>Inventory management desktop app for small shops, with analytics and PDF reporting.</p>
+        <p>Inventory management app with reports and sales tracking, built with Kotlin & SQLite.</p>
       </div>
-      <div class="project">
-        <img src="assets/images/pamba.jpg" alt="Pamba GG FC">
-        <h3>Pamba GG FC</h3>
-        <p>Mobile app for football club fans to follow club news, standings, and discussion.</p>
+      <div class="project-card">
+        <img src="teachmate.jpeg" alt="TeachMate Project">
+        <h3>TeachMate</h3>
+        <p>Mobile app for instructors to view daily schedules and session info easily.</p>
+      </div>
+      <div class="project-card1">
+        <img src="pharm.png" alt="Pharmacy Project">
+        <h3>Pharmacy</h3>
+        <p>A  desktop application that streamlines medicine inventory and sales tracking.It helps pharmacists manage stock efficiently and generate detailed reports with ease.</p>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Me</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+    <h2 class="section-title">Get in Touch</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>
-    <a href="assets/resume.pdf" download class="download-cv">Download My CV</a>
+    <div class="social-icons">
+      <a href="mailto:lennyflorence2000@gmail.com" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="https://wa.me/255686777093" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="https://github.com/lennycodes2000" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/leonard-mushumbusi-3809161a3/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.tiktok.com/@lennycodes2000" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Leonard Mushumbusi. All rights reserved.</p>
+    &copy; 2025 lennycodes. All rights reserved.
   </footer>
-
-  <script>
-    document.getElementById("theme-toggle").onclick = () => {
-      document.body.classList.toggle("dark");
-    };
-  </script>
 </body>
 </html>
+
